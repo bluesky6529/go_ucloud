@@ -19,7 +19,7 @@ var getbalance = &cobra.Command{
 		var AccessKeySecret = viper.GetString(account + ".AccessKeySecret")
 
 		request := GetBalance.GetBalance(AccessKeyID, AccessKeySecret)
-		fmt.Printf("%s 帳戶餘額: %f", account, request)
+		fmt.Printf("%s 帳戶餘額: %f \n", account, request)
 	},
 }
 
