@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"log"
+	"fmt"
+	"ucloud/internal/GetBalance"
 
-	_ "github.com/bluesky6529/go_ucloud/configs"
-	_ "github.com/bluesky6529/ucloud/internal/GetBalance"
+	_ "ucloud/configs"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -19,11 +19,11 @@ var getbalance = &cobra.Command{
 		var AccessKeySecret = viper.GetString(account + ".AccessKeySecret")
 
 		request := GetBalance.GetBalance(AccessKeyID, AccessKeySecret)
-		log.Printf("%s 帳戶餘額: %s", account, request)
+		fmt.Printf("%s 帳戶餘額: %f", account, request)
 	},
 }
 
 func init() {
-	queryaccountbalance.Flags().StringVarP(&account, "account", "a", "", "帳號 (require)")
-	queryaccountbalance.MarkFlagRequired("account")
+	getbalance.Flags().StringVarP(&account, "account", "a", "", "帳號 (require)")
+	getbalance.MarkFlagRequired("account")
 }

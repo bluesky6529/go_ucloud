@@ -2,8 +2,7 @@ package main
 
 import (
 	"log"
-
-	"github.com/bluesky6529/go_ucloud/cmd"
+	"ucloud/cmd"
 )
 
 func main() {

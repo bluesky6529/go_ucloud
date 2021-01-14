@@ -2,14 +2,13 @@ package GetBalance
 
 import (
 	"encoding/json"
-	"log"
 
 	"github.com/tidwall/gjson"
 	"github.com/ucloud/ucloud-sdk-go/ucloud"
 	"github.com/ucloud/ucloud-sdk-go/ucloud/auth"
 )
 
-func GetBalance(AccessKeyID string, AccessKeySecret string) string {
+func GetBalance(AccessKeyID string, AccessKeySecret string) float64 {
 	cfg := ucloud.NewConfig()
 	credential := auth.NewCredential()
 	credential.PrivateKey = AccessKeyID
@@ -22,5 +21,6 @@ func GetBalance(AccessKeyID string, AccessKeySecret string) string {
 		panic(err)
 	}
 	b, _ := json.Marshal(res.GetPayload())
-	log.Printf("%f", gjson.GetBytes(b, "AccountInfo.Amount").Float())
+	//response := log.Printf("%f", gjson.GetBytes(b, "AccountInfo.Amount").Float())
+	return gjson.GetBytes(b, "AccountInfo.Amount").Float()
 }
